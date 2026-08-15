@@ -2,12 +2,18 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\LostItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'role:normal_user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'user'])->name('user.dashboard');
+
+    Route::get('/lost-items', [LostItemController::class, 'index'])->name('user.lost-items.index');
+    Route::get('/lost-items/create', [LostItemController::class, 'create'])->name('user.lost-items.create');
+    Route::post('/lost-items', [LostItemController::class, 'store'])->name('user.lost-items.store');
+    Route::get('/lost-items/{lostItem}', [LostItemController::class, 'show'])->name('user.lost-items.show');
 });
 
 Route::middleware(['auth', 'role:security_admin'])->group(function () {

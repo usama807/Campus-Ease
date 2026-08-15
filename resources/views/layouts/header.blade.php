@@ -138,7 +138,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="" class="brand-link">
+          <a href="{{ route(Auth::user()->dashboardRouteName()) }}" class="brand-link">
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
             <span class="brand-text fw-light">Campus-Ease</span>
@@ -150,7 +150,42 @@
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
           <nav class="mt-2">
-
+            <ul class="nav sidebar-menu flex-column" role="navigation" aria-label="Main navigation">
+              @if (Auth::user()->isNormalUser())
+                <li class="nav-item">
+                  <a href="{{ route('user.dashboard') }}" class="nav-link {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-speedometer"></i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('user.lost-items.index') }}" class="nav-link {{ request()->routeIs('user.lost-items.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-box-seam"></i>
+                    <p>My Lost Reports</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('user.lost-items.create') }}" class="nav-link {{ request()->routeIs('user.lost-items.create') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-plus-circle"></i>
+                    <p>Report Lost Item</p>
+                  </a>
+                </li>
+              @elseif (Auth::user()->isSecurityAdmin())
+                <li class="nav-item">
+                  <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-speedometer"></i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+              @elseif (Auth::user()->isSuperAdmin())
+                <li class="nav-item">
+                  <a href="{{ route('superadmin.dashboard') }}" class="nav-link active">
+                    <i class="nav-icon bi bi-speedometer"></i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+              @endif
+            </ul>
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->
