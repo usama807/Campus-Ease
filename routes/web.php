@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\ClaimController;
 use App\Http\Controllers\User\FoundItemController;
 use App\Http\Controllers\User\LostItemController;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'role:normal_user'])->group(function () {
     Route::get('/found-items/{foundItem}/claim', [ClaimController::class, 'create'])->name('user.claims.create');
     Route::post('/found-items/{foundItem}/claim', [ClaimController::class, 'store'])->name('user.claims.store');
     Route::get('/claims/{claim}', [ClaimController::class, 'show'])->name('user.claims.show');
+    Route::post('/claims/{claim}/chat', [ChatController::class, 'store'])->name('user.claims.chat.store');
 });
 
 Route::middleware(['auth', 'role:security_admin'])->group(function () {
