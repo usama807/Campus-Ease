@@ -59,7 +59,24 @@
                     <dd class="col-sm-9">{{ $foundItem->description ?? 'N/A' }}</dd>
                 </dl>
             </div>
+            <div class="card-footer">
+                <form method="POST" action="{{ route('admin.found-items.update-status', $foundItem) }}" class="d-flex gap-2 align-items-center">
+                    @csrf
+                    @method('PATCH')
+                    <label for="status" class="form-label mb-0">Update Status:</label>
+                    <select id="status" name="status" class="form-select" style="max-width: 200px;">
+                        @foreach (['in_storage' => 'In Storage', 'claimed' => 'Claimed', 'donated' => 'Donated', 'disposed' => 'Disposed'] as $value => $label)
+                            <option value="{{ $value }}" @selected($foundItem->status === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
         </div>
+
+        @if (session('status'))
+            <div class="alert alert-success mt-3">{{ session('status') }}</div>
+        @endif
 
         <a href="{{ route('admin.found-items.index') }}" class="btn btn-outline-secondary mt-3">
             <i class="bi bi-arrow-left"></i> Back to Found Items

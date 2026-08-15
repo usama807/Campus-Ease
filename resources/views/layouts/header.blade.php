@@ -207,6 +207,12 @@
                     <p>Claims</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.lost-items.index') }}" class="nav-link {{ request()->routeIs('admin.lost-items.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-box-seam"></i>
+                    <p>Lost Reports</p>
+                  </a>
+                </li>
               @elseif (Auth::user()->isSuperAdmin())
                 <li class="nav-item">
                   <a href="{{ route('superadmin.dashboard') }}" class="nav-link active">

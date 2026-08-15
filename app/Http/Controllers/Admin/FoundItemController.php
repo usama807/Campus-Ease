@@ -70,4 +70,16 @@ class FoundItemController extends Controller
     {
         return view('admin.found-items.show', compact('foundItem'));
     }
+
+    public function updateStatus(Request $request, FoundItem $foundItem)
+    {
+        $validated = $request->validate([
+            'status' => ['required', 'in:in_storage,claimed,donated,disposed'],
+        ]);
+
+        $foundItem->update(['status' => $validated['status']]);
+
+        return redirect()->route('admin.found-items.show', $foundItem)
+            ->with('status', 'Item status updated.');
+    }
 }
