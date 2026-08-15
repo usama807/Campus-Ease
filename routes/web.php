@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ChatController as AdminChatController;
+use App\Http\Controllers\Admin\ClaimController as AdminClaimController;
 use App\Http\Controllers\Admin\FoundItemController as AdminFoundItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -39,6 +41,12 @@ Route::middleware(['auth', 'role:security_admin'])->group(function () {
     Route::get('/admin/found-items/create', [AdminFoundItemController::class, 'create'])->name('admin.found-items.create');
     Route::post('/admin/found-items', [AdminFoundItemController::class, 'store'])->name('admin.found-items.store');
     Route::get('/admin/found-items/{foundItem}', [AdminFoundItemController::class, 'show'])->name('admin.found-items.show');
+
+    Route::get('/admin/claims', [AdminClaimController::class, 'index'])->name('admin.claims.index');
+    Route::get('/admin/claims/{claim}', [AdminClaimController::class, 'show'])->name('admin.claims.show');
+    Route::post('/admin/claims/{claim}/approve', [AdminClaimController::class, 'approve'])->name('admin.claims.approve');
+    Route::post('/admin/claims/{claim}/reject', [AdminClaimController::class, 'reject'])->name('admin.claims.reject');
+    Route::post('/admin/claims/{claim}/chat', [AdminChatController::class, 'store'])->name('admin.claims.chat.store');
 });
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
