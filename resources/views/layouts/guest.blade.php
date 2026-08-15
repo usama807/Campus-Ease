@@ -13,10 +13,14 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/') }}"><b>Campus</b>Ease</a>
+            <a href="{{ url('/') }}" class="text-decoration-none">
+                <i class="bi bi-search text-primary"></i>
+                <b>Campus</b>Ease
+            </a>
+            <p class="text-muted mb-0" style="font-size: 0.9rem;">Campus Lost &amp; Found Portal</p>
         </div>
 
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-body login-card-body">
                 @yield('content')
             </div>

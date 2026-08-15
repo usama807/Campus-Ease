@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Sign in to report or search for lost &amp; found items</p>
 
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -26,7 +26,7 @@
             @enderror
         </div>
 
-        <div class="input-group mb-1">
+        <div class="input-group mb-3">
             <div class="form-floating">
                 <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                     placeholder="Password" required autocomplete="current-password">
@@ -42,16 +42,18 @@
 
         <!--begin::Row-->
         <div class="row">
-            <div class="col-8 d-inline-flex align-items-center">
+            <div class="col-7 d-inline-flex align-items-center">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember">
                     <label class="form-check-label" for="remember">Remember Me</label>
                 </div>
             </div>
             <!-- /.col -->
-            <div class="col-4">
+            <div class="col-5">
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-in-right"></i> Sign In
+                    </button>
                 </div>
             </div>
             <!-- /.col -->
@@ -59,10 +61,8 @@
         <!--end::Row-->
     </form>
 
-    <p class="mb-1 mt-3">
-        <a href="{{ route('password.request') }}">I forgot my password</a>
-    </p>
-    <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
-    </p>
+    <div class="d-flex justify-content-between mt-3">
+        <a href="{{ route('password.request') }}">Forgot password?</a>
+        <a href="{{ route('register') }}">Create an account</a>
+    </div>
 @endsection

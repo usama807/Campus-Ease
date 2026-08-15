@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
-    <p class="login-box-msg">Register a new membership</p>
+    <p class="login-box-msg">Create your account to report or claim items</p>
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -62,11 +62,13 @@
         </div>
 
         <div class="d-grid gap-2 mt-2">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-person-plus"></i> Register
+            </button>
         </div>
     </form>
 
-    <p class="mb-0 mt-3">
-        <a href="{{ route('login') }}" class="link-primary text-center">I already have a membership</a>
+    <p class="mb-0 mt-3 text-center">
+        <a href="{{ route('login') }}" class="link-primary">Already have an account? Sign in</a>
     </p>
 @endsection

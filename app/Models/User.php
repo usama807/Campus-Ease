@@ -54,6 +54,15 @@ class User extends Authenticatable
         return $this->role === 'normal_user';
     }
 
+    public function dashboardRouteName(): string
+    {
+        return match ($this->role) {
+            'security_admin' => 'admin.dashboard',
+            'super_admin' => 'superadmin.dashboard',
+            default => 'user.dashboard',
+        };
+    }
+
     public function lostItems(): HasMany
     {
         return $this->hasMany(LostItem::class);
