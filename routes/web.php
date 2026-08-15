@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LostItemController as AdminLostItemController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperAdmin\UserController as SuperAdminUserController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\ClaimController;
 use App\Http\Controllers\User\FoundItemController;
@@ -63,6 +64,9 @@ Route::middleware(['auth', 'role:security_admin'])->group(function () {
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
     Route::get('/super-admin/dashboard', [DashboardController::class, 'superAdmin'])->name('superadmin.dashboard');
+
+    Route::get('/super-admin/users', [SuperAdminUserController::class, 'index'])->name('superadmin.users.index');
+    Route::patch('/super-admin/users/{user}/role', [SuperAdminUserController::class, 'updateRole'])->name('superadmin.users.update-role');
 });
 
 Route::middleware('auth')->group(function () {

@@ -221,9 +221,15 @@
                 </li>
               @elseif (Auth::user()->isSuperAdmin())
                 <li class="nav-item">
-                  <a href="{{ route('superadmin.dashboard') }}" class="nav-link active">
+                  <a href="{{ route('superadmin.dashboard') }}" class="nav-link {{ request()->routeIs('superadmin.dashboard') ? 'active' : '' }}">
                     <i class="nav-icon bi bi-speedometer"></i>
                     <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('superadmin.users.index') }}" class="nav-link {{ request()->routeIs('superadmin.users.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-people"></i>
+                    <p>Manage Users</p>
                   </a>
                 </li>
               @endif
