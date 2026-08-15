@@ -58,6 +58,30 @@ class DashboardController extends Controller
         $totalItems = LostItem::count() + FoundItem::count();
         $systemLogs = SystemLog::count();
 
-        return view('dashboard.super-admin', compact('totalUsers', 'totalItems', 'systemLogs'));
+        $totalClaims = Claim::count();
+        $approvedClaims = Claim::where('status', 'approved')->count();
+        $resolutionRate = $totalClaims > 0 ? round(($approvedClaims / $totalClaims) * 100) : 0;
+
+        $usersByRole = User::selectRaw('role, count(*) as total')
+            ->groupBy('role')
+            ->pluck('total', 'role');
+
+        $foundItemsByStatus = FoundItem::selectRaw('status, count(*) as total')
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        $claimsBreakdown = Claim::selectRaw('status, count(*) as total')
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        return view('dashboard.super-admin', compact(
+            'totalUsers',
+            'totalItems',
+            'systemLogs',
+            'resolutionRate',
+            'usersByRole',
+            'foundItemsByStatus',
+            'claimsBreakdown'
+        ));
     }
 }
