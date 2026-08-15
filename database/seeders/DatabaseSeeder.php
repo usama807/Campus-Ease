@@ -20,10 +20,16 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'role' => 'normal_user',
-        ]);
+        User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'password' => bcrypt('password'),
+                'role' => 'normal_user',
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $this->call(FoundItemSeeder::class);
     }
 }
