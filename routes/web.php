@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\FoundItemController;
 use App\Http\Controllers\User\LostItemController;
+use App\Http\Controllers\User\MatchController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -18,6 +19,8 @@ Route::middleware(['auth', 'role:normal_user'])->group(function () {
 
     Route::get('/found-items', [FoundItemController::class, 'index'])->name('user.found-items.index');
     Route::get('/found-items/{foundItem}', [FoundItemController::class, 'show'])->name('user.found-items.show');
+
+    Route::get('/lost-items/{lostItem}/matches', [MatchController::class, 'index'])->name('user.lost-items.matches');
 });
 
 Route::middleware(['auth', 'role:security_admin'])->group(function () {

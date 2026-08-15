@@ -55,6 +55,9 @@
             </div>
         </div>
 
+        <a href="{{ route('user.lost-items.matches', $lostItem) }}" class="btn btn-primary mt-3">
+            <i class="bi bi-search"></i> View Possible Matches
+        </a>
         <a href="{{ route('user.lost-items.index') }}" class="btn btn-outline-secondary mt-3">
             <i class="bi bi-arrow-left"></i> Back to My Reports
         </a>
