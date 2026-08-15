@@ -25,7 +25,7 @@
         <div class="input-group mb-1">
             <div class="form-floating">
                 <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                    value="{{ old('email') }}" placeholder="yourname@{{ config('app.university_email_domain') }}" required autocomplete="username">
+                    value="{{ old('email') }}" placeholder="{{ 'yourname@'.config('app.university_email_domain') }}" required autocomplete="username">
                 <label for="email">University Email</label>
             </div>
             <div class="input-group-text">
@@ -36,7 +36,7 @@
             @enderror
         </div>
         <p class="text-muted mb-2" style="font-size: 0.85rem;">
-            Must be your university email (ending in @{{ config('app.university_email_domain') }}).
+            Must be your university email (ending in {{ '@'.config('app.university_email_domain') }}).
         </p>
 
         <div class="input-group mb-1">
