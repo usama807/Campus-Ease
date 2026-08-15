@@ -238,6 +238,12 @@
                     <p>System Logs</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('superadmin.settings.index') }}" class="nav-link {{ request()->routeIs('superadmin.settings.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-sliders"></i>
+                    <p>Settings</p>
+                  </a>
+                </li>
               @endif
             </ul>
           </nav>

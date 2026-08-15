@@ -19,6 +19,11 @@ class ClaimController extends Controller
 
     public function create(FoundItem $foundItem)
     {
+        if ($foundItem->status !== 'in_storage') {
+            return redirect()->route('user.found-items.show', $foundItem)
+                ->with('status', 'This item is no longer available to claim.');
+        }
+
         $alreadyClaimed = Claim::where('user_id', Auth::id())
             ->where('found_item_id', $foundItem->id)
             ->whereIn('status', ['pending', 'approved'])
@@ -34,6 +39,11 @@ class ClaimController extends Controller
 
     public function store(Request $request, FoundItem $foundItem)
     {
+        if ($foundItem->status !== 'in_storage') {
+            return redirect()->route('user.found-items.show', $foundItem)
+                ->with('status', 'This item is no longer available to claim.');
+        }
+
         $validated = $request->validate([
             'verification_answers' => ['required', 'string', 'min:10'],
         ]);

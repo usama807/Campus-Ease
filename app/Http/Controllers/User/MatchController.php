@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FoundItem;
 use App\Models\ItemMatch;
 use App\Models\LostItem;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -30,8 +31,11 @@ class MatchController extends Controller
             }
         }
 
+        $threshold = (int) Setting::get('match_sensitivity_threshold', 40);
+
         $matches = ItemMatch::where('lost_item_id', $lostItem->id)
-            ->where('match_confidence', '>', 0)
+            ->where('match_confidence', '>=', $threshold)
+            ->whereHas('foundItem', fn ($query) => $query->where('status', 'in_storage'))
             ->orderByDesc('match_confidence')
             ->get();
 

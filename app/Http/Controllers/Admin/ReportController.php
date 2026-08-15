@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Claim;
 use App\Models\FoundItem;
 use App\Models\LostItem;
+use App\Models\Setting;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Response;
@@ -14,14 +15,15 @@ class ReportController extends Controller
 {
     public function runCleanup()
     {
-        $cutoff = Carbon::now()->subDays(60);
+        $expirationDays = (int) Setting::get('unclaimed_item_expiration_days', 60);
+        $cutoff = Carbon::now()->subDays($expirationDays);
 
         $count = FoundItem::where('status', 'in_storage')
             ->where('date_found', '<=', $cutoff)
             ->update(['status' => 'donated']);
 
         return redirect()->route('admin.reports.index')
-            ->with('status', "$count unclaimed item(s) older than 60 days moved to Donated status.");
+            ->with('status', "$count unclaimed item(s) older than {$expirationDays} days moved to Donated status.");
     }
 
     public function index()
