@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ChatController as AdminChatController;
 use App\Http\Controllers\Admin\ClaimController as AdminClaimController;
 use App\Http\Controllers\Admin\FoundItemController as AdminFoundItemController;
 use App\Http\Controllers\Admin\LostItemController as AdminLostItemController;
+use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\ChatController;
@@ -53,6 +54,11 @@ Route::middleware(['auth', 'role:security_admin'])->group(function () {
     Route::get('/admin/lost-items', [AdminLostItemController::class, 'index'])->name('admin.lost-items.index');
     Route::get('/admin/lost-items/{lostItem}', [AdminLostItemController::class, 'show'])->name('admin.lost-items.show');
     Route::delete('/admin/lost-items/{lostItem}', [AdminLostItemController::class, 'destroy'])->name('admin.lost-items.destroy');
+
+    Route::get('/admin/reports', [AdminReportController::class, 'index'])->name('admin.reports.index');
+    Route::get('/admin/reports/export-pdf', [AdminReportController::class, 'exportPdf'])->name('admin.reports.export-pdf');
+    Route::get('/admin/reports/export-csv', [AdminReportController::class, 'exportCsv'])->name('admin.reports.export-csv');
+    Route::post('/admin/reports/run-cleanup', [AdminReportController::class, 'runCleanup'])->name('admin.reports.run-cleanup');
 });
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {

@@ -25,7 +25,31 @@ class DashboardController extends Controller
         $pendingClaims = Claim::where('status', 'pending')->count();
         $activeLostItems = LostItem::where('status', 'pending')->count();
 
-        return view('dashboard.admin', compact('foundItemsInStorage', 'pendingClaims', 'activeLostItems'));
+        $totalClaims = Claim::count();
+        $approvedClaims = Claim::where('status', 'approved')->count();
+        $resolutionRate = $totalClaims > 0 ? round(($approvedClaims / $totalClaims) * 100) : 0;
+
+        $frequentlyLostItems = LostItem::selectRaw('category_id, count(*) as total')
+            ->with('category')
+            ->groupBy('category_id')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
+        $hotspotLocations = LostItem::selectRaw('location, count(*) as total')
+            ->groupBy('location')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
+        return view('dashboard.admin', compact(
+            'foundItemsInStorage',
+            'pendingClaims',
+            'activeLostItems',
+            'resolutionRate',
+            'frequentlyLostItems',
+            'hotspotLocations'
+        ));
     }
 
     public function superAdmin()

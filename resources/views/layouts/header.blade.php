@@ -213,6 +213,12 @@
                     <p>Lost Reports</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.reports.index') }}" class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-file-earmark-bar-graph"></i>
+                    <p>Reports</p>
+                  </a>
+                </li>
               @elseif (Auth::user()->isSuperAdmin())
                 <li class="nav-item">
                   <a href="{{ route('superadmin.dashboard') }}" class="nav-link active">
