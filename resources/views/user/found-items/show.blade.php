@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">{{ $foundItem->item_name }}</h4>
-
         <div class="card">
             <div class="card-body">
                 <dl class="row mb-0">

@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">{{ $lostItem->item_name }}</h4>
+        <div class="d-flex justify-content-end mb-3">
             <span class="badge text-bg-{{ match ($lostItem->status) {
                 'matched' => 'info',
                 'claimed' => 'success',

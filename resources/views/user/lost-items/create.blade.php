@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">Report a Lost Item</h4>
-
         <div class="card">
             <div class="card-body">
                 <form method="POST" action="{{ route('user.lost-items.store') }}" enctype="multipart/form-data">

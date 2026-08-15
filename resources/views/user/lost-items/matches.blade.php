@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-1">Possible Matches</h4>
         <p class="text-muted">For your report: <strong>{{ $lostItem->item_name }}</strong></p>
 
         <div class="card">

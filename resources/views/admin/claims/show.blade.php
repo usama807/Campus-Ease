@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Review Claim')
+@section('title', 'Claim for '.$claim->foundItem->item_name)
 
 @section('content')
     <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Claim for {{ $claim->foundItem->item_name }}</h4>
+        <div class="d-flex justify-content-end mb-3">
             <span class="badge text-bg-{{ match ($claim->status) {
                 'approved' => 'success',
                 'rejected' => 'danger',

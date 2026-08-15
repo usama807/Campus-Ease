@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-1">Submit a Claim</h4>
         <p class="text-muted">For item: <strong>{{ $foundItem->item_name }}</strong></p>
 
         <div class="card">

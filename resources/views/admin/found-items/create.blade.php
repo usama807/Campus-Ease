@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">Log a Found Item</h4>
-
         <div class="card">
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.found-items.store') }}" enctype="multipart/form-data">

@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">System Settings</h4>
-
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif

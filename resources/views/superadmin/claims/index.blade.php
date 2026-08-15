@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-1">All Claims</h4>
         <p class="text-muted">Review any claim and override Security Admin's decision if there's a dispute.</p>
 
         <div class="card">

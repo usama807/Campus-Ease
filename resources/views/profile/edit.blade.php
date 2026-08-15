@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">Profile</h4>
-
         @include('profile.partials.update-profile-information-form')
 
         @include('profile.partials.update-password-form')

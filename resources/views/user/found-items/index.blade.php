@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">Search Found Items</h4>
-
         <div class="card mb-3">
             <div class="card-body">
                 <form method="GET" action="{{ route('user.found-items.index') }}">

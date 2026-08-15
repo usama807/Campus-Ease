@@ -4,8 +4,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Found Items</h4>
+        <div class="d-flex justify-content-end mb-3">
             <a href="{{ route('admin.found-items.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Log Found Item
             </a>

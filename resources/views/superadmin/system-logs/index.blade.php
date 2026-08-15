@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-3">System Logs</h4>
-
         <div class="card">
             <div class="card-body">
                 @if ($logs->isEmpty())
