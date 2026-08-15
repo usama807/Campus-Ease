@@ -184,9 +184,21 @@
                 </li>
               @elseif (Auth::user()->isSecurityAdmin())
                 <li class="nav-item">
-                  <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+                  <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="nav-icon bi bi-speedometer"></i>
                     <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.found-items.index') }}" class="nav-link {{ request()->routeIs('admin.found-items.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-archive"></i>
+                    <p>Found Items</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('admin.found-items.create') }}" class="nav-link {{ request()->routeIs('admin.found-items.create') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-plus-circle"></i>
+                    <p>Log Found Item</p>
                   </a>
                 </li>
               @elseif (Auth::user()->isSuperAdmin())

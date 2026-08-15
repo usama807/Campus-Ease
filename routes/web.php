@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FoundItemController as AdminFoundItemController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\ChatController;
@@ -33,6 +34,11 @@ Route::middleware(['auth', 'role:normal_user'])->group(function () {
 
 Route::middleware(['auth', 'role:security_admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+
+    Route::get('/admin/found-items', [AdminFoundItemController::class, 'index'])->name('admin.found-items.index');
+    Route::get('/admin/found-items/create', [AdminFoundItemController::class, 'create'])->name('admin.found-items.create');
+    Route::post('/admin/found-items', [AdminFoundItemController::class, 'store'])->name('admin.found-items.store');
+    Route::get('/admin/found-items/{foundItem}', [AdminFoundItemController::class, 'show'])->name('admin.found-items.show');
 });
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
