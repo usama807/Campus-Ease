@@ -232,6 +232,12 @@
                     <p>Manage Users</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('superadmin.system-logs.index') }}" class="nav-link {{ request()->routeIs('superadmin.system-logs.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-journal-text"></i>
+                    <p>System Logs</p>
+                  </a>
+                </li>
               @endif
             </ul>
           </nav>
