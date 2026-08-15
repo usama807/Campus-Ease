@@ -18,7 +18,7 @@
 
         <div class="card">
             <div class="card-body login-card-body">
-                {{ $slot }}
+                @yield('content')
             </div>
         </div>
     </div>
