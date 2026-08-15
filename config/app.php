@@ -86,6 +86,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | University Email Domain
+    |--------------------------------------------------------------------------
+    |
+    | Only email addresses ending in this domain are allowed to register a
+    | new account, since Campus Ease is meant for a specific university's
+    | students and staff.
+    |
+    */
+
+    'university_email_domain' => env('UNIVERSITY_EMAIL_DOMAIN', 'vu.edu.pk'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

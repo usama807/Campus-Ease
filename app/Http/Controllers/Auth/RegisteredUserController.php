@@ -30,10 +30,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $universityDomain = config('app.university_email_domain');
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => [
+                'required', 'string', 'lowercase', 'email', 'max:255',
+                'unique:'.User::class,
+                "ends_with:@{$universityDomain}",
+            ],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'email.ends_with' => "Please register with your university email address (ending in @{$universityDomain}).",
         ]);
 
         $user = User::create([
