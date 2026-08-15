@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LostItemController as AdminLostItemController;
 use App\Http\Controllers\Admin\ReportController as AdminReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperAdmin\ClaimController as SuperAdminClaimController;
 use App\Http\Controllers\SuperAdmin\SettingController as SuperAdminSettingController;
 use App\Http\Controllers\SuperAdmin\SystemLogController as SuperAdminSystemLogController;
 use App\Http\Controllers\SuperAdmin\UserController as SuperAdminUserController;
@@ -74,6 +75,10 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
 
     Route::get('/super-admin/settings', [SuperAdminSettingController::class, 'index'])->name('superadmin.settings.index');
     Route::patch('/super-admin/settings', [SuperAdminSettingController::class, 'update'])->name('superadmin.settings.update');
+
+    Route::get('/super-admin/claims', [SuperAdminClaimController::class, 'index'])->name('superadmin.claims.index');
+    Route::get('/super-admin/claims/{claim}', [SuperAdminClaimController::class, 'show'])->name('superadmin.claims.show');
+    Route::patch('/super-admin/claims/{claim}/override', [SuperAdminClaimController::class, 'override'])->name('superadmin.claims.override');
 });
 
 Route::middleware('auth')->group(function () {

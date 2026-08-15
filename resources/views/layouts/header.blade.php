@@ -244,6 +244,12 @@
                     <p>Settings</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('superadmin.claims.index') }}" class="nav-link {{ request()->routeIs('superadmin.claims.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-arrow-repeat"></i>
+                    <p>Claim Disputes</p>
+                  </a>
+                </li>
               @endif
             </ul>
           </nav>
