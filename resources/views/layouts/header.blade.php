@@ -176,6 +176,12 @@
                     <p>Search Found Items</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{ route('user.claims.index') }}" class="nav-link {{ request()->routeIs('user.claims.*') ? 'active' : '' }}">
+                    <i class="nav-icon bi bi-hand-index-thumb"></i>
+                    <p>My Claims</p>
+                  </a>
+                </li>
               @elseif (Auth::user()->isSecurityAdmin())
                 <li class="nav-item">
                   <a href="{{ route('admin.dashboard') }}" class="nav-link active">

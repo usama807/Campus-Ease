@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\ClaimController;
 use App\Http\Controllers\User\FoundItemController;
 use App\Http\Controllers\User\LostItemController;
 use App\Http\Controllers\User\MatchController;
@@ -21,6 +22,11 @@ Route::middleware(['auth', 'role:normal_user'])->group(function () {
     Route::get('/found-items/{foundItem}', [FoundItemController::class, 'show'])->name('user.found-items.show');
 
     Route::get('/lost-items/{lostItem}/matches', [MatchController::class, 'index'])->name('user.lost-items.matches');
+
+    Route::get('/claims', [ClaimController::class, 'index'])->name('user.claims.index');
+    Route::get('/found-items/{foundItem}/claim', [ClaimController::class, 'create'])->name('user.claims.create');
+    Route::post('/found-items/{foundItem}/claim', [ClaimController::class, 'store'])->name('user.claims.store');
+    Route::get('/claims/{claim}', [ClaimController::class, 'show'])->name('user.claims.show');
 });
 
 Route::middleware(['auth', 'role:security_admin'])->group(function () {

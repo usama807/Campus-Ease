@@ -35,6 +35,13 @@
             </div>
         </div>
 
+        @if (session('status'))
+            <div class="alert alert-info mt-3">{{ session('status') }}</div>
+        @endif
+
+        <a href="{{ route('user.claims.create', $foundItem) }}" class="btn btn-primary mt-3">
+            <i class="bi bi-hand-index-thumb"></i> This Is Mine, Submit Claim
+        </a>
         <a href="{{ route('user.found-items.index') }}" class="btn btn-outline-secondary mt-3">
             <i class="bi bi-arrow-left"></i> Back to Search
         </a>

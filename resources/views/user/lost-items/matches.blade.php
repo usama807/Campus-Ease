@@ -43,6 +43,9 @@
                                             <a href="{{ route('user.found-items.show', $match->foundItem) }}" class="btn btn-sm btn-outline-primary">
                                                 View Item
                                             </a>
+                                            <a href="{{ route('user.claims.create', $match->foundItem) }}" class="btn btn-sm btn-primary">
+                                                Claim
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
