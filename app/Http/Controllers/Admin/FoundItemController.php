@@ -31,7 +31,7 @@ class FoundItemController extends Controller
             'category_id' => ['required', 'exists:categories,id'],
             'color' => ['nullable', 'string', 'max:255'],
             'brand_model' => ['nullable', 'string', 'max:255'],
-            'date_found' => ['required', 'date'],
+            'date_found' => ['required', 'date', 'before_or_equal:today'],
             'time_found' => ['nullable', 'date_format:H:i'],
             'location_found' => ['required', 'string', 'max:255'],
             'storage_location' => ['required', 'string', 'max:255'],

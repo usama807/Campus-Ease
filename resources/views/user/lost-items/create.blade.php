@@ -51,7 +51,7 @@
 
                         <div class="col-md-6 mb-3">
                             <label for="date_lost" class="form-label">Date Lost</label>
-                            <input type="date" id="date_lost" name="date_lost" class="form-control @error('date_lost') is-invalid @enderror" value="{{ old('date_lost') }}" required>
+                            <input type="date" id="date_lost" name="date_lost" class="form-control @error('date_lost') is-invalid @enderror" value="{{ old('date_lost') }}" max="{{ date('Y-m-d') }}" required>
                             @error('date_lost')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

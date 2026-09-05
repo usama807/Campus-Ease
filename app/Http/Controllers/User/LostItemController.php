@@ -33,7 +33,7 @@ class LostItemController extends Controller
             'category_id' => ['required', 'exists:categories,id'],
             'color' => ['nullable', 'string', 'max:255'],
             'brand_model' => ['nullable', 'string', 'max:255'],
-            'date_lost' => ['required', 'date'],
+            'date_lost' => ['required', 'date', 'before_or_equal:today'],
             'time_lost' => ['nullable', 'date_format:H:i'],
             'location' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
