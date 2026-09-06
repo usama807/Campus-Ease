@@ -116,10 +116,10 @@
                     <i class="bi bi-file-earmark-excel"></i> Export Found Items (Excel/CSV)
                 </a>
                 <form method="POST" action="{{ route('admin.reports.run-cleanup') }}"
-                      onsubmit="return confirm('Move all unclaimed items older than 60 days to Donated status?');">
+                      onsubmit="return confirm('Move all unclaimed items older than {{ $unclaimedExpirationDays }} days to Donated status?');">
                     @csrf
                     <button type="submit" class="btn btn-outline-secondary">
-                        <i class="bi bi-recycle"></i> Run 60-Day Unclaimed Cleanup
+                        <i class="bi bi-recycle"></i> Run {{ $unclaimedExpirationDays }}-Day Unclaimed Cleanup
                     </button>
                 </form>
             </div>

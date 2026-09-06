@@ -94,6 +94,7 @@ class ReportController extends Controller
                 ->orderByDesc('total')
                 ->take(5)
                 ->get(),
+            'unclaimedExpirationDays' => (int) Setting::get('unclaimed_item_expiration_days', 60),
         ];
     }
 }
