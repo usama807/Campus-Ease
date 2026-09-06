@@ -4,8 +4,13 @@
 
 @section('content')
     <div class="container-fluid">
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
         <div class="d-flex justify-content-end mb-3">
             <span class="badge text-bg-{{ match ($lostItem->status) {
+                'approved' => 'primary',
                 'matched' => 'info',
                 'claimed' => 'success',
                 'closed' => 'secondary',
@@ -57,6 +62,18 @@
         <a href="{{ route('user.lost-items.matches', $lostItem) }}" class="btn btn-primary mt-3">
             <i class="bi bi-search"></i> View Possible Matches
         </a>
+
+        @if ($lostItem->status !== 'closed')
+            <form method="POST" action="{{ route('user.lost-items.resolve', $lostItem) }}" class="d-inline"
+                  onsubmit="return confirm('Mark this report as resolved? Do this once you have your item back.');">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-success mt-3">
+                    <i class="bi bi-check-circle"></i> Mark as Resolved
+                </button>
+            </form>
+        @endif
+
         <a href="{{ route('user.lost-items.index') }}" class="btn btn-outline-secondary mt-3">
             <i class="bi bi-arrow-left"></i> Back to My Reports
         </a>

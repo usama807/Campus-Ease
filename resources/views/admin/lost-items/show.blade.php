@@ -6,6 +6,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-end mb-3">
             <span class="badge text-bg-{{ match ($lostItem->status) {
+                'approved' => 'primary',
                 'matched' => 'info',
                 'claimed' => 'success',
                 'closed' => 'secondary',
@@ -14,6 +15,10 @@
                 {{ ucfirst($lostItem->status) }}
             </span>
         </div>
+
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
 
         <div class="card">
             <div class="card-body">
@@ -50,6 +55,32 @@
                     </div>
                 </div>
             </div>
+            @if ($lostItem->status === 'pending')
+                <div class="card-footer">
+                    <form method="POST" action="{{ route('admin.lost-items.approve', $lostItem) }}">
+                        @csrf
+                        @method('PATCH')
+                        <label for="storage_location" class="form-label">
+                            Approving logs this item as found. Where is it being stored?
+                        </label>
+                        <div class="row g-2">
+                            <div class="col-md-8">
+                                <input type="text" id="storage_location" name="storage_location"
+                                    class="form-control @error('storage_location') is-invalid @enderror"
+                                    value="{{ old('storage_location') }}" placeholder="e.g. Security Office Shelf A" required>
+                                @error('storage_location')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success w-100">
+                                    <i class="bi bi-check-circle"></i> Approve &amp; Log as Found
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            @endif
             <div class="card-footer">
                 <form method="POST" action="{{ route('admin.lost-items.destroy', $lostItem) }}" class="d-inline"
                       onsubmit="return confirm('Remove this report as fake/invalid? This cannot be undone.');">

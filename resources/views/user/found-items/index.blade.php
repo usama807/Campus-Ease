@@ -27,7 +27,7 @@
 
                         <div class="col-md-4">
                             <label for="date_found" class="form-label">Date Found</label>
-                            <input type="date" id="date_found" name="date_found" class="form-control" value="{{ request('date_found') }}">
+                            <input type="date" id="date_found" name="date_found" class="form-control" value="{{ request('date_found') }}" max="{{ date('Y-m-d') }}">
                         </div>
                     </div>
 

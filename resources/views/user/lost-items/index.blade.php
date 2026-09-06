@@ -40,6 +40,7 @@
                                         <td>{{ $lostItem->location }}</td>
                                         <td>
                                             <span class="badge text-bg-{{ match ($lostItem->status) {
+                                                'approved' => 'primary',
                                                 'matched' => 'info',
                                                 'claimed' => 'success',
                                                 'closed' => 'secondary',

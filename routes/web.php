@@ -27,6 +27,7 @@ Route::middleware(['auth', 'role:normal_user'])->group(function () {
     Route::get('/lost-items/create', [LostItemController::class, 'create'])->name('user.lost-items.create');
     Route::post('/lost-items', [LostItemController::class, 'store'])->name('user.lost-items.store');
     Route::get('/lost-items/{lostItem}', [LostItemController::class, 'show'])->name('user.lost-items.show');
+    Route::patch('/lost-items/{lostItem}/resolve', [LostItemController::class, 'markResolved'])->name('user.lost-items.resolve');
 
     Route::get('/found-items', [FoundItemController::class, 'index'])->name('user.found-items.index');
     Route::get('/found-items/{foundItem}', [FoundItemController::class, 'show'])->name('user.found-items.show');
@@ -57,6 +58,7 @@ Route::middleware(['auth', 'role:security_admin'])->group(function () {
 
     Route::get('/admin/lost-items', [AdminLostItemController::class, 'index'])->name('admin.lost-items.index');
     Route::get('/admin/lost-items/{lostItem}', [AdminLostItemController::class, 'show'])->name('admin.lost-items.show');
+    Route::patch('/admin/lost-items/{lostItem}/approve', [AdminLostItemController::class, 'approve'])->name('admin.lost-items.approve');
     Route::delete('/admin/lost-items/{lostItem}', [AdminLostItemController::class, 'destroy'])->name('admin.lost-items.destroy');
 
     Route::get('/admin/reports', [AdminReportController::class, 'index'])->name('admin.reports.index');

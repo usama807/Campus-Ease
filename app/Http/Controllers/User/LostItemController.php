@@ -60,4 +60,16 @@ class LostItemController extends Controller
 
         return view('user.lost-items.show', compact('lostItem'));
     }
+
+    public function markResolved(LostItem $lostItem)
+    {
+        if ($lostItem->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $lostItem->update(['status' => 'closed']);
+
+        return redirect()->route('user.lost-items.show', $lostItem)
+            ->with('status', 'Report marked as resolved.');
+    }
 }

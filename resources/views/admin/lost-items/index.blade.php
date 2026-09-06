@@ -36,6 +36,7 @@
                                         <td>{{ $lostItem->location }}</td>
                                         <td>
                                             <span class="badge text-bg-{{ match ($lostItem->status) {
+                                                'approved' => 'primary',
                                                 'matched' => 'info',
                                                 'claimed' => 'success',
                                                 'closed' => 'secondary',
@@ -46,7 +47,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.lost-items.show', $lostItem) }}" class="btn btn-sm btn-outline-primary">
-                                                View
+                                                View{{ $lostItem->status === 'pending' ? ' / Approve' : '' }}
                                             </a>
                                             <form method="POST" action="{{ route('admin.lost-items.destroy', $lostItem) }}" class="d-inline"
                                                   onsubmit="return confirm('Remove this report as fake/invalid? This cannot be undone.');">
